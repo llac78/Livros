@@ -13,4 +13,9 @@
     <string name="text_book_pages">Number of pages</string>
     <string name="text_book_year">Year of publication</string>
     <string name="button_save">Save</string>
+
+    <string name="button_google_sign_in">Login com Google</string>
+    <string name="error_google_sign_in">Erro ao efetuar login com a conta do Google.</string>
+    <string name="menu_action_logout">Logout</string>
+
 </resources>

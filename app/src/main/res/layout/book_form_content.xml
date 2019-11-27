@@ -11,7 +11,7 @@
             type="projeto.leopoldo.livros.BookFormActivity" />
         <variable
             name="publishers"
-            type="java.util.List&lt;projeto.leopoldo.livros.model.Publisher&gt;" />
+            type="projeto.leopoldo.livros.model.Publisher" />
     </data>
     <LinearLayout
         android:layout_width="match_parent"

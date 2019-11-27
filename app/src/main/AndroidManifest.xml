@@ -11,9 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BookFormActivity"></activity>
-        <activity android:name=".BookDetailsActivity" />
-        <activity android:name=".BookListActivity">
+
+        <activity android:name="projeto.leopoldo.livros.SignInActivity" />
+        <activity android:name="projeto.leopoldo.livros.BookFormActivity" />
+        <activity android:name="projeto.leopoldo.livros.BookDetailsActivity" />
+        <activity android:name="projeto.leopoldo.livros.BookListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

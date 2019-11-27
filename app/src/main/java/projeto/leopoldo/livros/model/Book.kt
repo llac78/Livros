@@ -2,8 +2,8 @@ package projeto.leopoldo.livros.model
 
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
+import androidx.databinding.library.baseAdapters.BR
 import org.parceler.Parcel
-import projeto.leopoldo.livros.BR
 
 @Parcel
 class Book : BaseObservable() {
@@ -56,7 +56,8 @@ class Book : BaseObservable() {
             notifyPropertyChanged(BR.available)
         }
     @Bindable
-    var mediaType: MediaType = MediaType.PAPER
+    var mediaType: MediaType =
+        MediaType.PAPER
         set(value) {
             field = value
             notifyPropertyChanged(BR.mediaType)

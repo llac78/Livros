@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.CompoundButton
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import org.parceler.Parcels
 import projeto.leopoldo.livros.databinding.ActivityBookFormBinding
@@ -14,7 +13,7 @@ import projeto.leopoldo.livros.model.Book
 import projeto.leopoldo.livros.model.MediaType
 import projeto.leopoldo.livros.model.Publisher
 
-class BookFormActivity : AppCompatActivity() {
+class BookFormActivity : BaseActivity() {
 
     private val binding: ActivityBookFormBinding by lazy {
         DataBindingUtil.setContentView<ActivityBookFormBinding>(
@@ -26,9 +25,13 @@ class BookFormActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding.content.book = if (savedInstanceState == null) {
-            Parcels.unwrap<Book>(intent.getParcelableExtra(EXTRA_BOOK)) ?: Book()
+            Parcels.unwrap<Book>(intent.getParcelableExtra(
+                EXTRA_BOOK
+            )) ?: Book()
         } else {
-            Parcels.unwrap<Book>(savedInstanceState.getParcelable(EXTRA_BOOK))
+            Parcels.unwrap<Book>(savedInstanceState.getParcelable(
+                EXTRA_BOOK
+            ))
         }
 
         binding.content.publishers = listOf(
@@ -36,6 +39,10 @@ class BookFormActivity : AppCompatActivity() {
             Publisher("2", "Outra")
         )
         binding.content.view = this
+    }
+
+    override fun init() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

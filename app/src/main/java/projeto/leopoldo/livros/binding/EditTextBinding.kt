@@ -8,7 +8,9 @@ object EditTextBinding {
     @JvmStatic
     @BindingAdapter("android:text")
     fun setTextFromInt(editText: EditText, value: Int) {
-        if (getTextAsInt(editText) != value) {
+        if (getTextAsInt(
+                editText
+            ) != value) {
             editText.setText(value.toString())
         }
     }
