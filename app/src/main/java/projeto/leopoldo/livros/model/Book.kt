@@ -69,6 +69,6 @@ class Book : BaseObservable() {
             notifyPropertyChanged(BR.rating)
         }
 
-    var userId: String = ""
+    //var userId: String = ""
 }
 

@@ -2,9 +2,6 @@ package projeto.leopoldo.livros
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import com.google.firebase.auth.FirebaseAuth
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -39,23 +36,6 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
         fbAuth.removeAuthStateListener(authListener)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.book_list, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (item?.itemId == R.id.menu_sign_out){
-            FirebaseAuth.getInstance().signOut()
-            return true
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     protected abstract fun init()

@@ -1,9 +1,9 @@
 package projeto.leopoldo.livros
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -31,17 +31,15 @@ class SignInActivity : AppCompatActivity() {
     // quando clicar no botão de login
     private fun signIn() {
         val signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient)
-        startActivityForResult(signInIntent,
-            RC_GOOGLE_SIGN_IN
-        )
+        startActivityForResult(signInIntent, RC_GOOGLE_SIGN_IN)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if(requestCode == RC_GOOGLE_SIGN_IN) {
+            // getSignInResultFromIntent para obter o resultado do processo de autenticação
             val result =  Auth.GoogleSignInApi.getSignInResultFromIntent(data)
-
             if (result.isSuccess){
                 // método signInAccount para obter informações da conta do usuário, caso o login tenha sucesso
                 val account =  result.signInAccount
@@ -50,6 +48,8 @@ class SignInActivity : AppCompatActivity() {
                 } else {
                     showErrorSignIn()
                 }
+            } else {
+                showErrorSignIn()
             }
         }
     }
@@ -73,9 +73,8 @@ class SignInActivity : AppCompatActivity() {
             .requestEmail()
             .build()
 
-        googleApiClient = GoogleApiClient.Builder(this)
-                // o método enableAutoManage é usado para gerenciar automaticamente a conexão com o Google Play Services
-            .enableAutoManage(this){
+        // o método enableAutoManage é usado para gerenciar automaticamente a conexão com o Google Play Services
+        googleApiClient = GoogleApiClient.Builder(this).enableAutoManage(this){
                 showErrorSignIn()
             }
             .addApi(Auth.GOOGLE_SIGN_IN_API, gso)

@@ -24,6 +24,8 @@ class BookFormActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // definição das propriedades do binding:
+        // livros
         binding.content.book = if (savedInstanceState == null) {
             Parcels.unwrap<Book>(intent.getParcelableExtra(
                 EXTRA_BOOK
@@ -34,15 +36,14 @@ class BookFormActivity : BaseActivity() {
             ))
         }
 
+        // editoras
         binding.content.publishers = listOf(
             Publisher("1", "Novatec"),
             Publisher("2", "Outra")
         )
-        binding.content.view = this
-    }
 
-    override fun init() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        // view (própria activity)
+        binding.content.view = this
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -60,6 +61,8 @@ class BookFormActivity : BaseActivity() {
         }
     }
 
+
+
     fun clickSaveBook(view: View) {
         val book = binding.content.book
         if (book != null) {
@@ -74,6 +77,10 @@ class BookFormActivity : BaseActivity() {
                         "${book.mediaType}"
             Toast.makeText(this, s, Toast.LENGTH_SHORT).show()
         }
+    }
+
+    override fun init() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     companion object {

@@ -19,9 +19,7 @@ class BookDetailsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val book = Parcels.unwrap<Book>(intent.getParcelableExtra(
-            EXTRA_BOOK
-        ))
+        val book = Parcels.unwrap<Book>(intent.getParcelableExtra(EXTRA_BOOK))
         if (book != null) {
             binding.book = book
         }
