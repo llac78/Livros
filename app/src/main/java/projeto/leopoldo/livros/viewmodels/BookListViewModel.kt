@@ -18,4 +18,6 @@ class BookListViewModel : ViewModel() {
         }
         return list
     }
+
+    fun remove(book: Book) = repo.remove(book)
 }

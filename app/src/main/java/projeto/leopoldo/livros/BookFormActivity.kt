@@ -81,7 +81,6 @@ class BookFormActivity : BaseActivity() {
     }
 
     override fun init() {
-
         viewModel.showProgress().observe(this, Observer { loadind ->
             loadind?.let {
                 btnSave.isEnabled = !loadind
@@ -101,11 +100,11 @@ class BookFormActivity : BaseActivity() {
     }
 
     private fun showMessageError() {
-        Toast.makeText(this, R.string.message_book_saved, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, R.string.message_error_book_saved, Toast.LENGTH_SHORT).show()
     }
 
     private fun showMessageSuccess() {
-        Toast.makeText(this, R.string.message_error_book_saved, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, R.string.message_book_saved, Toast.LENGTH_SHORT).show()
     }
 
 
