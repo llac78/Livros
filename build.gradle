@@ -13,6 +13,9 @@ buildscript {
         google_services_version = '4.3.2'
         firebase_auth_version = '18.1.0'
         playservices_version = '17.0.0'
+        firebase_firestore_version = '20.2.0'
+        lifecycle_version = '2.0.0'
+        material_design_version = '1.0.0'
     }
 
     repositories {

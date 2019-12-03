@@ -68,10 +68,8 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun initGoogleSignIn() {
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
+        val gso =
+            GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken(getString(R.string.default_web_client_id)).requestEmail().build()
 
         // o método enableAutoManage é usado para gerenciar automaticamente a conexão com o Google Play Services
         googleApiClient = GoogleApiClient.Builder(this).enableAutoManage(this){
@@ -82,8 +80,7 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun showErrorSignIn() {
-        Toast.makeText(this,
-            R.string.error_google_sign_in, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, R.string.error_google_sign_in, Toast.LENGTH_SHORT).show()
     }
 
     companion object {

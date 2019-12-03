@@ -7,11 +7,15 @@ import android.view.View
 import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import kotlinx.android.synthetic.main.book_form_content.*
 import org.parceler.Parcels
 import projeto.leopoldo.livros.databinding.ActivityBookFormBinding
 import projeto.leopoldo.livros.model.Book
 import projeto.leopoldo.livros.model.MediaType
 import projeto.leopoldo.livros.model.Publisher
+import projeto.leopoldo.livros.viewmodels.BookFormViewModel
 
 class BookFormActivity : BaseActivity() {
 
@@ -19,6 +23,10 @@ class BookFormActivity : BaseActivity() {
         DataBindingUtil.setContentView<ActivityBookFormBinding>(
             this, R.layout.activity_book_form
         )
+    }
+
+    private val viewModel: BookFormViewModel by lazy {
+        ViewModelProviders.of(this).get(BookFormViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,27 +69,46 @@ class BookFormActivity : BaseActivity() {
         }
     }
 
-
-
-    fun clickSaveBook(view: View) {
+    fun clickSaveBook(view: View){
         val book = binding.content.book
-        if (book != null) {
-            val s =
-                "${book.title}\n" +
-                        "${book.author}\n" +
-                        "${book.publisher?.name}\n" +
-                        "${book.pages}\n" +
-                        "${book.year}\n" +
-                        "${book.available}\n" +
-                        "${book.rating}\n" +
-                        "${book.mediaType}"
-            Toast.makeText(this, s, Toast.LENGTH_SHORT).show()
+        if (book != null){
+            try {
+                viewModel.saveBook(book)
+            } catch (e: Exception){
+                showMessageError()
+            }
         }
     }
 
     override fun init() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+        viewModel.showProgress().observe(this, Observer { loadind ->
+            loadind?.let {
+                btnSave.isEnabled = !loadind
+                binding.content.progressBar.visibility = if (it) View.VISIBLE else View.GONE
+            }
+        })
+        viewModel.savingOperation().observe(this, Observer { success ->
+            success?.let {
+                if (success){
+                    showMessageSuccess()
+                    finish()
+                } else {
+                    showMessageError()
+                }
+            }
+        })
     }
+
+    private fun showMessageError() {
+        Toast.makeText(this, R.string.message_book_saved, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun showMessageSuccess() {
+        Toast.makeText(this, R.string.message_error_book_saved, Toast.LENGTH_SHORT).show()
+    }
+
+
 
     companion object {
         private const val EXTRA_BOOK = "book"

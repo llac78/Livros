@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "800236533906",
-    "firebase_url": "https://livros-firebase-83f71.firebaseio.com",
-    "project_id": "livros-firebase-83f71",
-    "storage_bucket": "livros-firebase-83f71.appspot.com"
+    "project_number": "493391626638",
+    "firebase_url": "https://livros-firebase-b677f.firebaseio.com",
+    "project_id": "livros-firebase-b677f",
+    "storage_bucket": "livros-firebase-b677f.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:800236533906:android:9746c4ce3aadafb83f4e4b",
+        "mobilesdk_app_id": "1:493391626638:android:68161b3f20063f669d64df",
         "android_client_info": {
           "package_name": "projeto.leopoldo.livros"
         }
       },
       "oauth_client": [
         {
-          "client_id": "800236533906-v3n1pjqomc1rj2cbueug9p7r66euo5t0.apps.googleusercontent.com",
+          "client_id": "493391626638-tr459mgodav4tn8tvjsfbikteipu0cm3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "projeto.leopoldo.livros",
@@ -23,20 +23,20 @@
           }
         },
         {
-          "client_id": "800236533906-mo9j8jdepvd7o48l40ncsp4erta153le.apps.googleusercontent.com",
+          "client_id": "493391626638-5a2ourfleu7ud437hn14575sn075vejk.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDP_pF3FY15HmauldSH3cBdyub2mYCSS_A"
+          "current_key": "AIzaSyC0uNtDQ8G6PktS_NVBaQq4nNKz-s1dQ5k"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "800236533906-mo9j8jdepvd7o48l40ncsp4erta153le.apps.googleusercontent.com",
+              "client_id": "493391626638-5a2ourfleu7ud437hn14575sn075vejk.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

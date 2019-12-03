@@ -43,7 +43,15 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics:17.2.0'
     implementation "com.google.firebase:firebase-core:$firebase_core_version"
 
-    implementation "com.google.firebase:firebase-auth:$firebase_auth_version"
+    implementation "com.google.firebase:firebase-firestore:$firebase_firestore_version"
     implementation "com.google.android.gms:play-services-auth:$playservices_version"
+
+    implementation "com.google.firebase:firebase-auth:$firebase_auth_version"
+
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+
+    implementation "com.google.android.material:material:$material_design_version"
 }
 apply plugin: 'com.google.gms.google-services'

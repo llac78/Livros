@@ -3,10 +3,16 @@ package projeto.leopoldo.livros
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import org.parceler.Parcels
 import projeto.leopoldo.livros.databinding.ActivityBookDetailsBinding
 import projeto.leopoldo.livros.model.Book
+import projeto.leopoldo.livros.viewmodels.BookDetailsViewModel
 
 class BookDetailsActivity : BaseActivity() {
 
@@ -14,6 +20,10 @@ class BookDetailsActivity : BaseActivity() {
         DataBindingUtil.setContentView<ActivityBookDetailsBinding>(
             this, R.layout.activity_book_details
         )
+    }
+
+    private val viewModel: BookDetailsViewModel by lazy {
+        ViewModelProviders.of(this).get(BookDetailsViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,8 +35,27 @@ class BookDetailsActivity : BaseActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.book_details, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item?.itemId == R.id.menu_edit_book){
+            binding.book?.let {
+                BookFormActivity.start(this, it)
+            }
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     override fun init() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        binding.book?.let { book ->
+            viewModel.getBook(book.id).observe(this, Observer {
+                binding.book = it
+            })
+        }
     }
 
     companion object {

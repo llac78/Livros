@@ -1,20 +1,33 @@
 package projeto.leopoldo.livros
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_book_list.*
 import projeto.leopoldo.livros.model.Book
 import projeto.leopoldo.livros.model.MediaType
 import projeto.leopoldo.livros.model.Publisher
+import projeto.leopoldo.livros.viewmodels.BookListViewModel
 
 class BookListActivity : BaseActivity() {
+
+    private val viewModel: BookListViewModel by lazy {
+        ViewModelProviders.of(this).get(BookListViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_book_list)
+
+        fabAdd.setOnClickListener {
+            startActivity(Intent(this, BookFormActivity::class.java))
+        }
 
         val books = listOf(
             Book().apply{
@@ -52,6 +65,23 @@ class BookListActivity : BaseActivity() {
     }
 
     override fun init() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        try {
+            // getBooks para carregar dados do servidor
+            viewModel.getBooks().observe(this, Observer { books ->
+                updateList(books)
+            })
+        } catch (e: Exception){
+            Toast.makeText(this, R.string.message_error_load_books, Toast.LENGTH_SHORT).show()
+        }
     }
+
+    private fun updateList(books: List<Book>) {
+
+        rvBooks.layoutManager = LinearLayoutManager(this)
+        rvBooks.adapter = BookAdapter(books){book ->
+            BookDetailsActivity.start(this, book)
+        }
+    }
+
+
 }
