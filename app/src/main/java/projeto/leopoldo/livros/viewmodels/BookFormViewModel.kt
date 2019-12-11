@@ -6,6 +6,7 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import projeto.leopoldo.livros.firebase.FbRepository
 import projeto.leopoldo.livros.model.Book
+import java.io.File
 
 class BookFormViewModel : ViewModel() {
 
@@ -25,11 +26,25 @@ class BookFormViewModel : ViewModel() {
         }
     }
 
+    var tempImageFile: File? = null
+
     fun showProgress(): LiveData<Boolean> = showProgress
 
     fun savingOperation(): LiveData<Boolean> = savingBookOperation
 
     fun saveBook(book: Book){
         saveBook.value = book
+    }
+
+    // apaga o arquivo de imagem temporária antes do user escolher tirar uma nova foto
+    fun deleteTempPhoto(){
+        tempImageFile?.let {
+            if (it.exists()) it.delete()
+        }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        deleteTempPhoto()
     }
 }

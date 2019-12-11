@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion 28
@@ -53,5 +54,9 @@ dependencies {
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 
     implementation "com.google.android.material:material:$material_design_version"
+
+    implementation "com.google.firebase:firebase-storage:$firebase_storage_version"
+
+    implementation "com.crashlytics.sdk.android:crashlytics:$crashlytics_version"
 }
 apply plugin: 'com.google.gms.google-services'
